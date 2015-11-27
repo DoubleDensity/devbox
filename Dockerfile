@@ -13,6 +13,9 @@ RUN yum -y install zsh wget vim man ; yum clean all
 # Setup home environment
 RUN useradd dev -s /bin/zsh
 
+VOLUME /repos
+RUN chown -R dev:dev /repos
+
 ENV HOME /home/dev
 WORKDIR /home/dev
 
