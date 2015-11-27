@@ -11,7 +11,7 @@ RUN yum -y install libxml2-devel tree ; yum clean all
 RUN yum -y install zsh wget vim man ; yum clean all
 
 # Setup home environment
-RUN useradd dev -s zsh
+RUN useradd dev -s /bin/zsh
 #RUN mkdir /home/dev && chown -R dev: /home/dev
 
 ENV HOME /home/dev
