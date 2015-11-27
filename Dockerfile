@@ -10,11 +10,11 @@ RUN yum -y groupinstall "Development Tools" ; yum clean all
 RUN yum -y install libxml2-devel tree ; yum clean all
 RUN yum -y install zsh wget vim man ; yum clean all
 
-#COPY app /app
+# Setup home environment
+RUN useradd dev
+RUN mkdir /home/dev && chown -R dev: /home/dev
 
-#RUN mkdir /code
-
-ENV HOME /repos
+ENV HOME /home/dev
 
 USER dev
 
