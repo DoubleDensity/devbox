@@ -8,7 +8,7 @@ RUN yum -y install epel-release ; yum clean all
 RUN yum repolist
 RUN yum -y groupinstall "Development Tools" ; yum clean all
 RUN yum -y install libxml2-devel tree ; yum clean all
-RUN yum -y install zsh wget vim man qemu ; yum clean all
+RUN yum -y install zsh wget vim man qemu xterm ; yum clean all
 
 # Setup home environment
 RUN useradd dev -s /bin/zsh
