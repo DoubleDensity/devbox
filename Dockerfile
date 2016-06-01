@@ -12,6 +12,8 @@ RUN yum -y install zsh wget vim man qemu sudo openssh-clients system-config-kick
 
 # Setup home environment
 RUN useradd dev -s /bin/zsh
+RUN echo 'dev:devbox' | chpasswd
+RUN echo "dev ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 VOLUME /repos
 RUN chown -R dev:dev /repos
