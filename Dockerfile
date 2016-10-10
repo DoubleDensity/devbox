@@ -8,7 +8,8 @@ RUN yum -y install epel-release ; yum clean all
 RUN yum repolist
 RUN yum -y groupinstall "Development Tools" ; yum clean all
 RUN yum -y install libxml2-devel tree ; yum clean all
-RUN yum -y install zsh wget vim man qemu sudo openssh-clients system-config-kickstart lftp ; yum clean all
+RUN yum -y install zsh wget vim man qemu sudo openssh-clients system-config-kickstart lftp python-pip ; yum clean all
+RUN pip install awscli
 
 # Setup home environment
 RUN useradd dev -s /bin/zsh
