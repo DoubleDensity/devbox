@@ -33,5 +33,6 @@ RUN ln -s /repos /home/dev/repos
 USER dev
 
 RUN sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+RUN echo "eval $(ssh-agent -s)" >> .zshrc
 
 ENTRYPOINT /bin/zsh 	
