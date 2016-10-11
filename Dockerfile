@@ -13,7 +13,7 @@ RUN pip install awscli
 
 WORKDIR /tmp
 RUN wget https://releases.hashicorp.com/terraform/0.7.5/terraform_0.7.5_linux_amd64.zip
-RUN tar zxf terraform_0.7.5_linux_amd64.zip
+RUN unzip terraform_0.7.5_linux_amd64.zip
 RUN cp terraform /usr/local/bin
 RUN chmod +x /usr/local/bin/terraform
 
