@@ -8,7 +8,7 @@ RUN yum -y install epel-release ; yum clean all
 RUN yum repolist
 RUN yum -y groupinstall "Development Tools" ; yum clean all
 RUN yum -y install libxml2-devel tree ; yum clean all
-RUN yum -y update ; yum -y install zsh wget vim man qemu sudo openssh-clients system-config-kickstart lftp python-pip jq graphviz ; yum clean all
+RUN yum -y update ; yum -y install zsh wget vim man qemu sudo openssh-clients system-config-kickstart lftp python-pip jq graphviz go ; yum clean all
 RUN pip install awscli
 
 WORKDIR /tmp
@@ -16,6 +16,9 @@ RUN wget https://releases.hashicorp.com/terraform/0.7.5/terraform_0.7.5_linux_am
 RUN unzip terraform_0.7.5_linux_amd64.zip
 RUN cp terraform /usr/local/bin
 RUN chmod +x /usr/local/bin/terraform
+
+RUN git clone https://github.com/coreos/fleet.git
+RUN cd fleet && ./build
 
 # Setup home environment
 RUN useradd dev -s /bin/zsh
