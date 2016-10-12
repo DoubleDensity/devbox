@@ -19,6 +19,8 @@ RUN chmod +x /usr/local/bin/terraform
 
 RUN git clone https://github.com/coreos/fleet.git
 RUN cd fleet && ./build
+RUN cp fleet/fleetctl/fleetctl /usr/local/bin
+RUN chmod +x /usr/local/bin/fleetctl
 
 # Setup home environment
 RUN useradd dev -s /bin/zsh
