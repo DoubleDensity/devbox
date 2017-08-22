@@ -8,7 +8,7 @@ RUN yum -y install epel-release ; yum clean all
 RUN yum repolist
 RUN yum -y groupinstall "Development Tools" ; yum clean all
 RUN yum -y install libxml2-devel tree ; yum clean all
-RUN yum -y update ; yum -y install zsh wget vim man qemu sudo openssh-clients system-config-kickstart lftp python-pip jq graphviz go ; yum clean all
+RUN yum -y update ; yum -y install zsh wget vim man qemu sudo openssh-clients system-config-kickstart lftp python-pip jq graphviz go docker; yum clean all
 RUN pip install awscli
 
 WORKDIR /tmp
