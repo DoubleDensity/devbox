@@ -1,4 +1,4 @@
-FROM centos
+FROM centos:latest
 
 MAINTAINER Buttetsu Batou <doubledense@gmail.com>
 
@@ -12,15 +12,14 @@ RUN yum -y update ; yum -y install zsh wget vim man qemu sudo openssh-clients sy
 RUN pip install awscli
 
 WORKDIR /tmp
-RUN wget https://releases.hashicorp.com/terraform/0.7.5/terraform_0.7.5_linux_amd64.zip
-RUN unzip terraform_0.7.5_linux_amd64.zip
-RUN cp terraform /usr/local/bin
-RUN chmod +x /usr/local/bin/terraform
+# RUN wget https://releases.hashicorp.com/terraform/0.7.5/terraform_0.7.5_linux_amd64.zip
+# RUN unzip terraform_0.7.5_linux_amd64.zip
+# RUN cp terraform /usr/local/bin
+# RUN chmod +x /usr/local/bin/terraform
 
-RUN git clone https://github.com/coreos/fleet.git
-RUN cd fleet && ./build
-RUN cp fleet/bin/fleetctl /usr/local/bin
-RUN chmod +x /usr/local/bin/fleetctl
+# Install Go
+RUN wget https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz && sudo tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz && rm -fv go1.10.3.linux-amd64.tar.gz
+
 
 # Setup home environment
 RUN useradd dev -s /bin/zsh
@@ -39,5 +38,6 @@ USER dev
 
 RUN sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 RUN echo 'eval $(ssh-agent -s)' >> .zshrc
+RUN echo 'export PATH=$PATH:/usr/local/go/bin' >> .zshrc
 
 ENTRYPOINT /bin/zsh 	
