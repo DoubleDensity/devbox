@@ -3,23 +3,18 @@ FROM centos:latest
 MAINTAINER Buttetsu Batou <doubledense@gmail.com>
 
 # Install deps
-
-RUN yum -y install epel-release ; yum clean all
+RUN yum -y clean expire-cache
+RUN yum -y install deltarpm epel-release && yum clean all && rm -fr /var/cache/yum
+RUN yum -y update && rm -fr /var/cache/yum
 RUN yum repolist
-RUN yum -y groupinstall "Development Tools" ; yum clean all
-RUN yum -y install libxml2-devel tree ; yum clean all
-RUN yum -y update ; yum -y install zsh wget vim man qemu sudo openssh-clients system-config-kickstart lftp python-pip jq graphviz go docker; yum clean all
+RUN yum -y groupinstall "Development Tools" && yum -y install zsh wget vim man qemu sudo openssh-clients system-config-kickstart lftp python-pip jq graphviz docker gnutls-devel mkisofs isomd5sum rpm-build yum-utils createrepo \
+	curl bsdtar && yum clean all && rm -fr /var/cache/yum
 RUN pip install awscli
 
 WORKDIR /tmp
-# RUN wget https://releases.hashicorp.com/terraform/0.7.5/terraform_0.7.5_linux_amd64.zip
-# RUN unzip terraform_0.7.5_linux_amd64.zip
-# RUN cp terraform /usr/local/bin
-# RUN chmod +x /usr/local/bin/terraform
 
 # Install Go
 RUN wget https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz && sudo tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz && rm -fv go1.10.3.linux-amd64.tar.gz
-
 
 # Setup home environment
 RUN useradd dev -s /bin/zsh
