@@ -22,5 +22,6 @@ USER dev
 RUN sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 RUN echo 'eval $(ssh-agent -s)' >> .zshrc
 RUN echo 'export PATH=$PATH:/usr/local/go/bin' >> .zshrc
+RUN echo 'alias python=/opt/rh/rh-python36/root/usr/bin/python' >> .zshrc
 
 ENTRYPOINT /bin/zsh
