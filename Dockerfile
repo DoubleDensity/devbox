@@ -7,7 +7,7 @@ RUN yum -y clean expire-cache
 RUN yum -y install deltarpm epel-release centos-release-scl && yum clean all && rm -fr /var/cache/yum
 RUN yum -y update && rm -fr /var/cache/yum
 RUN yum -y groupinstall "Development Tools" && yum -y install zsh wget vim man sudo lftp rh-python36-python-pip python-paramiko python-dpath jq rpm-build yum-utils createrepo \
-	curl bsdtar && yum clean all && rm -fr /var/cache/yum
+	curl bsdtar tito && yum clean all && rm -fr /var/cache/yum
 
 # Setup home environment
 RUN useradd dev -s /bin/zsh
